@@ -1,7 +1,10 @@
-\set ECHO 0
+\set ECHO none
 BEGIN;
 \i sql/pg_rrule.sql
 \set ECHO all
+
+SET TIME ZONE 'GMT';
+SET DATESTYLE TO 'ISO';
 
 SELECT 'FREQ=WEEKLY;INTERVAL=1;WKST=MO;UNTIL=20200101T045102Z'::rrule;
 
