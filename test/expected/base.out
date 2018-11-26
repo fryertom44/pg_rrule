@@ -1,19 +1,20 @@
-\set ECHO 0
-
+\set ECHO none
+SET TIME ZONE 'GMT';
+SET DATESTYLE TO 'ISO';
 SELECT 'FREQ=WEEKLY;INTERVAL=1;WKST=MO;UNTIL=20200101T045102Z'::rrule;
-              rrule
+               rrule                
 ------------------------------------
  FREQ=WEEKLY;UNTIL=20200101T045102Z
 (1 row)
 
 SELECT get_byday('FREQ=WEEKLY;INTERVAL=1;WKST=MO;UNTIL=20200101T045102Z;BYDAY=MO,TH,SU'::rrule);
- get_byday
+ get_byday 
 -----------
  {2,5,1}
 (1 row)
 
 SELECT get_freq('FREQ=WEEKLY;INTERVAL=1;WKST=MO;UNTIL=20200101T045102Z'::rrule);
- get_freq
+ get_freq 
 ----------
  WEEKLY
 (1 row)
@@ -23,7 +24,7 @@ SELECT * FROM
         get_occurrences('FREQ=WEEKLY;INTERVAL=1;WKST=MO;UNTIL=20200101T045102Z;BYDAY=SA;BYHOUR=10;BYMINUTE=51;BYSECOND=2'::rrule,
             '2019-12-07 10:51:02+00'::timestamp with time zone)
     );
-         unnest
+         unnest         
 ------------------------
  2019-12-07 10:51:02+00
  2019-12-14 10:51:02+00
@@ -36,7 +37,7 @@ SELECT * FROM
         get_occurrences('FREQ=WEEKLY;INTERVAL=1;WKST=MO;UNTIL=20200101T045102Z;BYDAY=SA;BYHOUR=10;BYMINUTE=51;BYSECOND=2'::rrule,
             '2019-12-07 10:51:02'::timestamp)
     );
-       unnest
+       unnest        
 ---------------------
  2019-12-07 10:51:02
  2019-12-14 10:51:02
